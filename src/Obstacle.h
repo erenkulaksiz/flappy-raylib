@@ -11,6 +11,7 @@ public:
   void Update();
   void SetPlayer(Player *player) { m_pPlayer = player; }
   void ResetObstacles();
+  void Draw();
 
 private:
   void GenerateObstacle();
@@ -21,5 +22,6 @@ private:
   std::vector<Vector2> m_obstaclePositions = {};
   float m_obstacleMoveSpeed = 250.0f;
   Player *m_pPlayer = nullptr;
-  bool m_hasScoredCurrentObstacle = false; // Track if we've scored the current obstacle
+  bool m_hasScoredCurrentObstacle = false;
+  Texture2D m_obstacleTexture;
 };

@@ -15,18 +15,20 @@ public:
   void Update();
   bool IsPlayerDead() { return m_isPlayerDead; }
   void SetPlayerDead(bool isPlayerDead) { m_isPlayerDead = isPlayerDead; }
-  float GetSize() { return m_size; }
-  void SetSize(float size) { m_size = size; }
+  Vector2 GetSize() { return m_size; }
+  void SetSize(const Vector2 &size) { m_size = size; }
   void ResetPlayer();
   void IncrementScore() { m_score++; }
   int GetScore() { return m_score; }
   void SetScore(int score) { m_score = score; }
+  void Draw();
 
 private:
   Vector2 m_position = {0, 0};
   Vector2 m_velocity = {0, 0};
+  Vector2 m_size = {64, 45};
   float m_speed = 2.0f;
-  float m_size = 64.0f;
   bool m_isPlayerDead = false;
   int m_score = 0;
+  Texture2D m_texture;
 };

@@ -18,6 +18,7 @@ Game::Game()
   m_pPlayer = new Player();
   m_pObstacle = new Obstacle();
   m_pObstacle->SetPlayer(m_pPlayer);
+  m_backgroundTexture = LoadTexture("resources/background.png");
 }
 
 Game::~Game()
@@ -28,12 +29,18 @@ Game::~Game()
   m_pPlayer = nullptr;
   delete m_pObstacle;
   m_pObstacle = nullptr;
+  UnloadTexture(m_backgroundTexture);
 }
 
 void Game::Update()
 {
   BeginDrawing();
   ClearBackground(BLACK);
+
+  DrawBackground();
+
+  m_pPlayer->Draw();
+  m_pObstacle->Draw();
 
   if (m_pPlayer->IsPlayerDead())
   {
@@ -69,4 +76,14 @@ void Game::Update()
   }
 
   EndDrawing();
+}
+
+void Game::DrawBackground()
+{
+  DrawTexturePro(m_backgroundTexture,
+                 Rectangle{0, 0, static_cast<float>(m_backgroundTexture.width), static_cast<float>(m_backgroundTexture.height)},
+                 Rectangle{0, 0, static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight())},
+                 Vector2{0, 0},
+                 0.0f,
+                 WHITE);
 }
